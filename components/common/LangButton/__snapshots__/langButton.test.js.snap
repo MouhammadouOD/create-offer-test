@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LangButton Should render Snapshot 1`] = `
+<div
+  className="ReactFlagsSelect-module_flagsSelect__2pfa2 menu-flags rfs_btn"
+  data-testid="rfs"
+>
+  <button
+    aria-expanded={false}
+    aria-haspopup="listbox"
+    aria-labelledby="rfs-btn"
+    className="ReactFlagsSelect-module_selectBtn__19wW7"
+    data-testid="rfs-btn"
+    disabled={false}
+    id="rfs-btn"
+    onClick={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "fontSize": 13,
+      }
+    }
+    type="button"
+  >
+    <span
+      className="ReactFlagsSelect-module_selectValue__152eS"
+    >
+      Select a country
+    </span>
+  </button>
+</div>
+`;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardTitle Should render Snapshot 1`] = `
+<div>
+  <div
+    className="text-2xl pb-6"
+    data-testid="title"
+  >
+    Title
+  </div>
+  <hr />
+</div>
+`;

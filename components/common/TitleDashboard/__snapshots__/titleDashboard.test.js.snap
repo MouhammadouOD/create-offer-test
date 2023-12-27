@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitleDashboard Should render Snapshot 1`] = `
+<div
+  className="w-full text-xl mb-6 text-center"
+  data-testid="title"
+>
+  title
+</div>
+`;

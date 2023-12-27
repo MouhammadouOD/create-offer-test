@@ -1,0 +1,7 @@
+export const REQUIRED = 'Ce champ est obligatoire !'
+export const EMAIL_INVALID = 'Cet email est invalid'
+export const FILE_FORMAT_INVALID = 'format non valide'
+export const FILE_SIZE_INVALID = 'Taille non valide'
+export const NUMBER_POSITIVE = 'Le nombre doit être positif'
+export const MIN_LEVEL_SKILL = 'La compétence doit être au minimum de 1'
+export const MAX_LEVEL_SKILL = 'La compétence doit être au maximum de 3'

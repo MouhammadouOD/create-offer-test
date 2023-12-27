@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label Should render Snapshot 1`] = `
+<span
+  className="py-1 px-3 rounded-md text-xs outline outline-offset-2 outline-1 outline-blue-200 text-white  bg-orange-300 small"
+  data-testid="span"
+>
+  Children
+</span>
+`;

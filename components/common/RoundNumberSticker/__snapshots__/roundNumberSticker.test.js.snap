@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoundNumberSticker Should render Snapshot 1`] = `
+<div
+  className="rounded-full h-6 w-6 flex items-center justify-center bg-yellow-500 text-white"
+  data-testid="div"
+>
+  content
+</div>
+`;

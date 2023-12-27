@@ -1,113 +1,168 @@
-import Image from 'next/image'
+"use client";
+import PreviewForm from "@/components/PreviewForm";
+import { CardTitle } from "@/components/common";
+import RenderFormButton from "@/components/common/RenderFormButton";
+import RenderForm from "@/components/common/RenderFormButton";
+import ConditionsOfferForm from "@/components/createOffer/ConditionsOfferForm";
+import DescriptionOfferForm from "@/components/createOffer/DescriptionOfferForm";
+import DetailsOfferForm from "@/components/createOffer/DetailsOfferForm";
+import FilesOfferForm from "@/components/createOffer/FilesOfferForm";
+import InfosOfferForm from "@/components/createOffer/InfosOfferForm";
+import TypeForm from "@/components/createOffer/TypeForm";
+import { form } from "@/constants";
+import Image from "next/image";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+
+Yup.object({
+  title: Yup.string().required(form.REQUIRED),
+  countries: Yup.array(Yup.mixed().required(form.REQUIRED)).required(
+    form.REQUIRED
+  ),
+  categories: Yup.array(Yup.mixed().required(form.REQUIRED)).required(
+    form.REQUIRED
+  ),
+  closingDate: Yup.date().required(form.REQUIRED),
+  closingDateHour: Yup.date().required(form.REQUIRED),
+}).required();
+
+export type GlobalOfferFormState = {
+  typeForm: TypeFormData;
+  infosOfferForm: /* {
+    title: string;
+    countries: [];
+    categories: [];
+    closingDate: Date;
+    closingDateHour: Date;
+  } */InfosOfferFormData;
+  detailsOfferForm: /* {
+    budgets: number;
+    budgetCurrency: string;
+    deadlineStart: Date;
+    deadlineEnd: Date;
+  } */DetailsOfferFormData;
+  descriptionOfferForm: /* string */DescriptionOfferFormData;
+  conditionsOfferForm: {
+    termsConditionsAward: string;
+    selectionCriteria: string;
+    criteriaJudgingOffers: string;
+  };
+  filesOfferForm: /* {
+    files: File[] | undefined
+  } */FilesOfferFormData
+};
 
 export default function Home() {
+  const [formStep, setFormStep] = useState(0);
+  const [globalFormState, setGlobalFormState] = useState<GlobalOfferFormState>({
+    typeForm: {
+      typeOffer: "",
+      target: "",
+      typeResponse: "",
+      displayName: false,
+      public: false,
+    },
+    infosOfferForm: {
+      title: "",
+      countries: [],
+      categories: [],
+      closingDate: new Date(),
+      closingDateHour: new Date(),
+    },
+    detailsOfferForm: {
+      budget: 0,
+      budgetCurrency: "",
+      deadlineStart: new Date(),
+      deadlineEnd: new Date(),
+    },
+    descriptionOfferForm: {description:""},
+    conditionsOfferForm: {
+      termsConditionsAward: "",
+      selectionCriteria: "",
+      criteriaJudgingOffers: "",
+    },
+    filesOfferForm: {
+      files: undefined
+    }
+  });
+
+  const handleNextStep = () => {
+    setFormStep((prev) => prev + 1);
+  };
+
+  const handlePrevStep = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault()
+    if (formStep > 0) {
+      setFormStep((cur) => cur - 1);
+    }
+  };
+
+  const setGlobalFormStateFunc = (globalFormState:GlobalOfferFormState) => {
+    setGlobalFormState(globalFormState)
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      {formStep}
+      {formStep === 0 && (
+        <TypeForm
+          globalFormState={globalFormState}
+          setGlobalFormState={setGlobalFormStateFunc}
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
         />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      )}
+      {formStep === 1 && (
+        <InfosOfferForm
+          globalFormState={globalFormState}
+          setGlobalFormState={setGlobalFormState}
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
+        />
+      )}
+      {formStep === 2 && (
+        <DetailsOfferForm
+          globalFormState={globalFormState}
+          setGlobalFormState={setGlobalFormState}
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
+        />
+      )}
+      {formStep === 3 && (
+        <DescriptionOfferForm
+          globalFormState={globalFormState}
+          setGlobalFormState={setGlobalFormState}
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
+        />
+      )}
+      {formStep === 4 && (
+        <ConditionsOfferForm
+          globalFormState={globalFormState}
+          setGlobalFormState={setGlobalFormState}
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
+        />
+      )}
+      {formStep === 5 && (
+        <FilesOfferForm
+          globalFormState={globalFormState}
+          setGlobalFormState={setGlobalFormState}
+          handleNextStep={handleNextStep}
+          handlePrevStep={handlePrevStep}
+        />
+      )}
+      {formStep === 6 && (
+        <>
+          <CardTitle title="Récapitulatif de votre offre" />
+           <PreviewForm
+            hasActivatedScrolling={false}
+            section="createOffer"
+            listValues={globalFormState}
+          /> 
+        </>
+      )}
     </main>
-  )
+  );
 }

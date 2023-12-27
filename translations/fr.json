@@ -1,0 +1,114 @@
+{
+    "authentication.alreadyaccount.login": [
+      {
+        "type": 0,
+        "value": "Tu as déjà un compte ? "
+      },
+      {
+        "children": [
+          {
+            "type": 0,
+            "value": "Connecte-toi ici !"
+          }
+        ],
+        "type": 8,
+        "value": "link"
+      }
+    ],
+    "authentication.title.signin": [
+      {
+        "type": 0,
+        "value": "Inscription"
+      }
+    ],
+    "commom.login": [
+      {
+        "type": 0,
+        "value": "Connexion"
+      }
+    ],
+    "commom.registration": [
+      {
+        "type": 0,
+        "value": "Inscription"
+      }
+    ],
+    "form.button.registration": [
+      {
+        "type": 0,
+        "value": "Je m'inscris"
+      }
+    ],
+    "form.label.confirm.password": [
+      {
+        "type": 0,
+        "value": "Confirmer votre mot de passe"
+      }
+    ],
+    "form.label.email.professional": [
+      {
+        "type": 0,
+        "value": "Email Professionel"
+      }
+    ],
+    "form.label.password": [
+      {
+        "type": 0,
+        "value": "Mot de passe"
+      }
+    ],
+    "form.label.privacy": [
+      {
+        "type": 0,
+        "value": "J'ai lu et j'accepte la politique de confidentialité."
+      }
+    ],
+    "form.label.termsofservice": [
+      {
+        "type": 0,
+        "value": "J'accepte les termes et les conditions d'utilisation."
+      }
+    ],
+    "form.placeholder.email.professional": [
+      {
+        "type": 0,
+        "value": "Ton email professionnel"
+      }
+    ],
+    "form.validation.email": [
+      {
+        "type": 0,
+        "value": "Cette email est invalide"
+      }
+    ],
+    "form.validation.password.comparison": [
+      {
+        "type": 0,
+        "value": "Les mots de passe ne sont pas les mêmes"
+      }
+    ],
+    "form.validation.password.field": [
+      {
+        "type": 0,
+        "value": "La mot de passe doit comporter au moins 6 caractères"
+      }
+    ],
+    "form.validation.privacy": [
+      {
+        "type": 0,
+        "value": "J'ai lu et j'accepte la politique de confidentialité."
+      }
+    ],
+    "form.validation.required": [
+      {
+        "type": 0,
+        "value": "Ce champ est obligatoire"
+      }
+    ],
+    "form.validation.termsofservice": [
+      {
+        "type": 0,
+        "value": "J'accepte les termes et les conditions d'utilisation."
+      }
+    ]
+  }

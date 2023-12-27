@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar Should render Snapshot 1`] = `
+<img
+  alt="Demandez nous un conseil"
+  className="rounded-full w-10 h-10 "
+/>
+`;

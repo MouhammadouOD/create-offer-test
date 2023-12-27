@@ -1,0 +1,114 @@
+{
+    "authentication.alreadyaccount.login": [
+      {
+        "type": 0,
+        "value": "Already have an account? "
+      },
+      {
+        "children": [
+          {
+            "type": 0,
+            "value": " Login here! "
+          }
+        ],
+        "type": 8,
+        "value": "Link"
+      }
+    ],
+    "authentication.title.signin": [
+      {
+        "type": 0,
+        "value": "Registration"
+      }
+    ],
+    "commom.login": [
+      {
+        "type": 0,
+        "value": "Login"
+      }
+    ],
+    "commom.registration": [
+      {
+        "type": 0,
+        "value": "Registration"
+      }
+    ],
+    "form.button.registration": [
+      {
+        "type": 0,
+        "value": "I register"
+      }
+    ],
+    "form.label.confirm.password": [
+      {
+        "type": 0,
+        "value": "Confirm your password"
+      }
+    ],
+    "form.label.email.professional": [
+      {
+        "type": 0,
+        "value": "Professional Email"
+      }
+    ],
+    "form.label.password": [
+      {
+        "type": 0,
+        "value": "Password"
+      }
+    ],
+    "form.label.privacy": [
+      {
+        "type": 0,
+        "value": "I have read and accept the privacy policy."
+      }
+    ],
+    "form.label.termsofservice": [
+      {
+        "type": 0,
+        "value": "I accept the terms and conditions of use."
+      }
+    ],
+    "form.placeholder.email.professional": [
+      {
+        "type": 0,
+        "value": "Your professional email"
+      }
+    ],
+    "form.validation.email": [
+      {
+        "type": 0,
+        "value": "This email is invalid"
+      }
+    ],
+    "form.validation.password.comparison": [
+      {
+        "type": 0,
+        "value": "The passwords are not the same"
+      }
+    ],
+    "form.validation.password.field": [
+      {
+        "type": 0,
+        "value": "The password must be at least 6 characters long"
+      }
+    ],
+    "form.validation.privacy": [
+      {
+        "type": 0,
+        "value": "I have read and accept the privacy policy."
+      }
+    ],
+    "form.validation.required": [
+      {
+        "type": 0,
+        "value": "This field is mandatory"
+      }
+    ],
+    "form.validation.termsofservice": [
+      {
+        "type": 0,
+        "value": "I accept the terms and conditions of use."
+      }
+    ]
+  }

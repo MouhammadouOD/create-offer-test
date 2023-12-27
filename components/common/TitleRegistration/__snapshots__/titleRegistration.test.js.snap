@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitleRegistration Should render Snapshot 1`] = `
+<h1
+  className="text-3xl text-gray-800"
+  data-testid="title"
+>
+  Title
+</h1>
+`;

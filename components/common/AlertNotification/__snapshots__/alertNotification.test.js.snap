@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlertNotification Should render Snapshot 1`] = `
+<div
+  className="fixed bottom-0 right-0 z-50 hidden flex-row justify-between items-center cursor-pointer rounded-md px-4 py-3 my-2 md:px-6 md:py-4 md:my-4 mx-auto text-sm md:text-base 2xl:text-lg w-4/5 lg:w-2/5 2xl:w-2/5  bg-red-200 "
+>
+  <div
+    className="w-full flex flex-row items-center"
+  >
+    <span
+      className="w-1/12"
+    >
+      <svg
+        className="inline-block mb-1 h-6 w-6 text-red-600"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
+        />
+      </svg>
+    </span>
+    <span
+      className="ml-2 inline-block w-11/12 text-red-800
+            "
+    >
+      Message
+    </span>
+  </div>
+  <div>
+    <svg
+      className="h-6 w-6"
+      fill="currentColor"
+      height="1em"
+      onClick={[Function]}
+      stroke="currentColor"
+      strokeWidth="0"
+      style={
+        Object {
+          "color": undefined,
+        }
+      }
+      viewBox="0 0 24 24"
+      width="1em"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="m16.192 6.344-4.243 4.242-4.242-4.242-1.414 1.414L10.535 12l-4.242 4.242 1.414 1.414 4.242-4.242 4.243 4.242 1.414-1.414L13.364 12l4.242-4.242z"
+      />
+    </svg>
+  </div>
+</div>
+`;
