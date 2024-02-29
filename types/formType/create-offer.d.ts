@@ -11,7 +11,6 @@ type InfosOfferFormData = {
   countries: INameFrEn[] | undefined
   categories: INameFrEn[] | undefined
   closingDate: Date
-  closingDateHour: Date
 }
 
 type DetailsOfferFormData = {

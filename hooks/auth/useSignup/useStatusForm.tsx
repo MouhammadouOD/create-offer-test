@@ -1,7 +1,7 @@
 import { storageName } from '../../../constants'
-import { useFormValidation } from '@hooks/common'
+import { useFormValidation } from '@/hooks/common'
 import { SchemaOf } from 'yup'
-import { statusValidationSchema } from '@helpers/yupValidationForm'
+import { statusValidationSchema } from '@/helpers/yupValidationForm'
 
 const useStatusForm = () => {
   const proprietiesForm = useFormValidation<

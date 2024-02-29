@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
-import PreviewForm from '@components/PreviewForm'
+import PreviewForm from '@/components/PreviewForm'
 import useTypeForm from './useTypeForm'
 import useInfosOfferForm from './useInfosOfferForm'
 import useDetailsOfferForm from './useDetailsOfferForm'
@@ -12,13 +12,13 @@ import {
   FilesOfferForm,
   InfosOfferForm,
   TypeForm
-} from '@components/createOffer'
+} from '@/components/createOffer'
 import useFilesOfferForm from './useFilesOfferForm'
 import { api } from '../../../services'
 import { apiUrl, page } from '../../../constants'
 import { useRouter } from 'next/router'
 import useButtonMultiForm from '@hooks/common/useButtonMultiForm'
-import { CardTitle } from '@components/common'
+import { CardTitle } from '@/components/common'
 import { useAppSelector } from '../../../store/app/hooks'
 
 const tabs = [

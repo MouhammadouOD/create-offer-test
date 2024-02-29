@@ -20,31 +20,31 @@ import {
 } from "../ui/select";
 import { MultiSelect } from "../ui/multiSelect";
 import { Button } from "../ui/button";
+import { useAppDispatch, useAppSelector } from "@/store/app/hooks";
 
 const validationSchema = Yup.object({
   title: Yup.string().required(form.REQUIRED),
-  /* countries: Yup.array(Yup.mixed().required(form.REQUIRED)).required(
+  countries: Yup.array(Yup.mixed().required(form.REQUIRED)).required(
     form.REQUIRED
   ),
   categories: Yup.array(Yup.mixed().required(form.REQUIRED)).required(
     form.REQUIRED
-  ), */
-  closingDate: Yup.string() /* date() */
-    .required(form.REQUIRED),
-  closingDateHour: Yup.string() /* date() */
+  ),
+  closingDate: Yup
+    .date /* string */
+    ()
     .required(form.REQUIRED),
 }).required();
 
 type FormValues = {
   title: string;
   closingDate: Date;
-  closingDateHour: Date;
 };
 
 interface Props {
   globalFormState: GlobalOfferFormState;
   setGlobalFormState: (globalFormState: GlobalOfferFormState) => void;
-  handleNextStep: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  handleNextStep: () => void;
   handlePrevStep: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
@@ -80,18 +80,21 @@ const InfosOfferForm = ({
 
   const { isValid, errors } = formState;
 
-  const registerDateHour = () => {};
+  const dispatch = useAppDispatch();
+  let categoryFetched = useAppSelector(
+    (state) => state.category.categoryFetched
+  );
+  let countryFetched = useAppSelector((state) => state.country.countryFetched);
 
   /* const onSubmit = handleSubmit((data) => {console.log(data)}); */
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
     const infosofferdata = {
       ...data,
       closingDate: new Date(data.closingDate),
-      closingDateHour: new Date(data.closingDateHour),
-      countries:[],
-      categories: []
+      countries: selectedCountries,
+      categories: selectedCategories,
     };
+    console.log(infosofferdata);
     const newGlobalFormState = {
       ...globalFormState,
       infosOfferForm: infosofferdata,
@@ -110,10 +113,17 @@ const InfosOfferForm = ({
     setFocus("title");
   }, [setFocus]);
 
+  
+  useEffect(() => {
+    setValue("countries", selectedCountries)
+    setValue("categories", selectedCategories)
+  }, [selectedCountries, selectedCategories]);
+
   useEffect(() => {
     console.log(isValid);
     console.log(errors);
-  }, [date]);
+    console.log("🚀 ~ file: InfosOfferForm.tsx:119 ~ selectedCountries:", selectedCountries)
+  }, [selectedCountries]);
 
   const locale = "fr";
   const minDate = new Date();
@@ -263,28 +273,22 @@ const InfosOfferForm = ({
 
         <div className="flex flex-col lg:flex-row lg:space-x-6">
           <div className="w-full lg:w-1/2">
-            <Input
-              type="hidden"
-              id="closingDate"
-              value={DateTime.fromJSDate(date).toLocaleString()}
-              {...register("closingDate")}
-            />
-            <Input
-              type="hidden"
-              id="closingDateHour"
-              value={`${date.getHours().toLocaleString()}:${date
-                .getMinutes()
-                .toLocaleString()}`}
-              {...register("closingDateHour")}
-            />
+            Entrez la date de clôture de l&apos;offre: <br />
+              {/* <input
+                type="date"
+                id="closingDate"
+                value={date.toLocaleString()}
+                onChange={e => register("closingDate", {value: e.target.value })}
+                {...register("closingDate")}
+              /> */}
             <DateTimePicker
               label="Entrez la date de clôture de l'offre"
-              onchange={registerDateHour}
               minDate={minDate}
               date={date}
               setDate={setDate}
+              setValue={setValue}
+              registerField="closingDate"
             />
-
             {/* <DateTimeForm
               label="Date de cloture de l'offre"
               id="closingDate"
@@ -314,6 +318,7 @@ const InfosOfferForm = ({
         isvalid={isValid}
         handleNextStep={handleNextStep}
         handlePrevStep={handlePrevStep}
+        onSubmit={onSubmit}
       />
       <pre>{JSON.stringify(watch(), null, 2)}</pre>
     </fieldset>

@@ -9,7 +9,7 @@ type Props = {
   value: string
   register: UseFormRegisterReturn
   errors: { [x: string]: any }
-  setValue: ReturnType<typeof useForm>['setValue']
+  setValue: ReturnType<typeof useForm>['setValue'] | any
   required?: boolean
 }
 

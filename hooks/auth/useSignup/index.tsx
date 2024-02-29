@@ -4,14 +4,14 @@ import {
   RequirementForm,
   StatusForm,
   UserForm
-} from '@components/auth/SignUp'
+} from '@/components/auth/SignUp'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import useFinanceForm from './useFinanceForm'
 import useInfosForm from './useInfosForm'
 import useStatusForm from './useStatusForm'
 import useUserForm from './useUserForm'
 import useRequirementForm from './useRequirementForm'
-import PreviewForm from '@components/PreviewForm'
+import PreviewForm from '@/components/PreviewForm'
 import { api } from '../../../services'
 import { apiUrl, storageName, page } from '../../../constants'
 import { webStorage } from '../../../helpers'

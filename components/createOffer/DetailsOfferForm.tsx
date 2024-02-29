@@ -27,10 +27,17 @@ interface Props {
 const validationSchema = Yup.object({
   budget: Yup.number().positive(form.NUMBER_POSITIVE).required(form.REQUIRED),
   budgetCurrency: Yup.string().required(form.REQUIRED),
-  deadlineStart: Yup.string() /* date() */
-    .required(form.REQUIRED),
-  deadlineEnd: Yup.string() /* date() */
-    .required(form.REQUIRED),
+  deadlineStart: Yup.date().required(form.REQUIRED),
+  deadlineEnd: Yup.date()
+    .required(form.REQUIRED)
+    .when("deadlineStart", (deadlineStart, schema) =>
+      deadlineStart
+        ? schema.min(
+            deadlineStart,
+            "Deadline End must be greater than Deadline Start"
+          )
+        : schema
+    ),
 }).required();
 
 const DetailsOfferForm = ({
@@ -50,8 +57,10 @@ const DetailsOfferForm = ({
     handleSubmit,
   } = useForm({ mode: "all", resolver: yupResolver(validationSchema) });
   const { isValid, errors } = formState;
-  const [deadlineStart, setDeadlineStart] = useState<Date>(new Date());
-  const [deadlineEnd, setDeadlineEnd] = useState<Date>(new Date());
+  const [deadlineStart, setDeadlineStart] = useState<Date>(
+    globalFormState.infosOfferForm.closingDate
+  );
+  const [deadlineEnd, setDeadlineEnd] = useState<Date>(deadlineStart);
 
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -73,6 +82,10 @@ const DetailsOfferForm = ({
       globalFormState
     );
   }, [globalFormState]);
+
+  useEffect(() => {
+    if (deadlineStart > deadlineEnd) setDeadlineEnd(deadlineStart);
+  }, [deadlineStart]);
 
   const minDate = globalFormState.infosOfferForm.closingDate
     ? new Date(globalFormState.infosOfferForm.closingDate)
@@ -100,7 +113,6 @@ const DetailsOfferForm = ({
                 name="budgetCurrency"
                 required={true}
                 value={getValues("budgetCurrency")}
-                /* setValue={setValue} */
                 register={register("budgetCurrency")}
               />
             </div>
@@ -118,24 +130,11 @@ const DetailsOfferForm = ({
             <DateTimePicker
               label="Date de début de la prestation"
               date={deadlineStart}
-              setDate={setDeadlineStart}
-            />
-            <Input
-              type="hidden"
-              id="deadlineStart"
-              value={DateTime.fromJSDate(deadlineStart).toLocaleString()}
-              {...register("deadlineStart")}
-            />
-            {/* <DateTimeForm
-              label="Date de début de la prestation"
-              id="deadlineStart"
-              name="deadlineStart"
-              required={true}
               minDate={minDate}
-              control={control}
-              errors={errors?.deadlineStart?.message}
-            /> 
-            */}
+              setDate={setDeadlineStart}
+              setValue={setValue}
+              registerField="deadlineStart"
+            />
           </div>
           <div className="w-full lg:w-1/2">
             Date de fin de la prestation : <br />
@@ -144,22 +143,9 @@ const DetailsOfferForm = ({
               minDate={deadlineStart}
               date={deadlineEnd}
               setDate={setDeadlineEnd}
+              setValue={setValue}
+              registerField="deadlineEnd"
             />
-            <Input
-              type="hidden"
-              id="deadlineEnd"
-              value={DateTime.fromJSDate(deadlineEnd).toLocaleString()}
-              {...register("deadlineEnd")}
-            />
-            {/* <DateTimeForm
-              label="Date de fin de la prestation"
-              id="deadlineEnd"
-              name="deadlineEnd"
-              required={true}
-              minDate={deadlineStartWatch}
-              control={control}
-              errors={errors?.deadlineEnd?.message}
-            /> */}
           </div>
         </div>
         <Button type="submit">Soumettre</Button>
@@ -168,6 +154,7 @@ const DetailsOfferForm = ({
         isvalid={isValid}
         handleNextStep={handleNextStep}
         handlePrevStep={handlePrevStep}
+        onSubmit={onSubmit}
       />
       <pre>{JSON.stringify(watch(), null, 2)}</pre>
     </fieldset>

@@ -5,7 +5,7 @@ import { ErrorForm, LabelForm } from '..'
 
 interface SelectProps extends SelectPropsForm, PropsForm {
   value: string | number
-  setValue?: ReturnType<typeof useForm>['setValue']
+  setValue?: ReturnType<typeof useForm>['setValue'] | any
   getValues?: ReturnType<typeof useForm>['getValues']
   clearErrors?: ReturnType<typeof useForm>['clearErrors']
 }

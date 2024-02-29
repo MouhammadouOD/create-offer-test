@@ -29,13 +29,12 @@ Yup.object({
 
 export type GlobalOfferFormState = {
   typeForm: TypeFormData;
-  infosOfferForm: /* {
+  infosOfferForm: {
     title: string;
-    countries: [];
-    categories: [];
+    countries: string[];
+    categories: string[];
     closingDate: Date;
-    closingDateHour: Date;
-  } */InfosOfferFormData;
+  }/* InfosOfferFormData */;
   detailsOfferForm: /* {
     budgets: number;
     budgetCurrency: string;
@@ -54,7 +53,7 @@ export type GlobalOfferFormState = {
 };
 
 export default function Home() {
-  const [formStep, setFormStep] = useState(0);
+  const [formStep, setFormStep] = useState(1);
   const [globalFormState, setGlobalFormState] = useState<GlobalOfferFormState>({
     typeForm: {
       typeOffer: "",
@@ -68,7 +67,6 @@ export default function Home() {
       countries: [],
       categories: [],
       closingDate: new Date(),
-      closingDateHour: new Date(),
     },
     detailsOfferForm: {
       budget: 0,

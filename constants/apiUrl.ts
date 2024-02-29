@@ -12,8 +12,8 @@ export const API_CHECKING_TOKEN_RESET_PASSWORD = `${baseAPIURL}/auth/checking-to
 export const API_REFRESH_TOKEN = `${baseAPIURL}/auth/refresh-token`
 export const API_RESET_PASSWORD = `${baseAPIURL}/reset-password`
 export const API_COUNTRIES = `${baseAPIURL}/countries`
-export const API_CATEGORIES = `${baseAPIURL}/category-tags`
-export const API_TAGS = `${baseAPIURL}/tags`
+export const API_CATEGORIES = `${baseAPIURL}/industries`
+export const API_TAGS = `${baseAPIURL}/expertises`
 // OFFER
 export const API_CREATE_OFFER = `${baseAPIURL}/create-offer`
 export const API_OFFERS = `${baseAPIURL}/offers`

@@ -18,7 +18,7 @@ interface FormSelectProps extends PropsForm {
   isClearable?: boolean;
   canCreate?: boolean;
   closeMenuOnSelect?: boolean;
-  setValue?: ReturnType<typeof useForm>["setValue"];
+  setValue?: ReturnType<typeof useForm>["setValue"] | any;
   apiType: "category" | "tag" | "country" | "company";
   apiParams?: any;
 }
@@ -108,6 +108,7 @@ const ReactSelectForm = ({
               resRedux = categoryFetched;
             } else {
               res = await api.fetchData(apiUrl.API_CATEGORIES, optionsFetch);
+              console.log("🚀 ~ promiseOptions ~ res:", res)
             }
             break;
           default:

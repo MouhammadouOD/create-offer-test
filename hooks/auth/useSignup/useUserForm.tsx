@@ -1,6 +1,6 @@
 import * as Yup from 'yup'
 import { form, storageName } from '../../../constants'
-import { useFormValidation } from '@hooks/common'
+import { useFormValidation } from '@/hooks/common'
 import { SchemaOf } from 'yup'
 
 const useUserForm = () => {

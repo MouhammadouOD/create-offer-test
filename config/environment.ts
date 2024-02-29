@@ -23,7 +23,7 @@ const config: Config = {
   deployEnvironment,
   port: parseInt(process.env.PORT || '4000', 10),
   isBrowser: get(process, 'browser', false) === true,
-  endpoint: getEndpointurl() || 'http://localhost:8090/api/',
+  endpoint: getEndpointurl() || process.env.API_DEV_URL!, /*  */
   defaultLanguage: process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE || 'fr',
   sessionSecret: process.env.SESSION_SECRET || 'test',
   acceptedLanguages: (process.env.ACCEPTED_LANGUAGES || 'fr,en').split(','),

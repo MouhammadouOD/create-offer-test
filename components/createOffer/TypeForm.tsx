@@ -196,6 +196,7 @@ const TypeForm = ({
         isvalid={isValid}
         handleNextStep={handleNextStep}
         handlePrevStep={handlePrevStep}
+onSubmit={onSubmit}
       />
       <pre>{JSON.stringify(watch(), null, 2)}</pre>
     </fieldset>

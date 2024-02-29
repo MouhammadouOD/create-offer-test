@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "./button";
 import { PropsForm } from "@/types/formType/props-form";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 interface DateTimePickerProps {
   date: Date;
@@ -21,6 +22,8 @@ interface DateTimePickerProps {
   label?: string;
   minDate?: Date;
   onchange?: any;
+  setValue?: UseFormSetValue<any>;
+  registerField?: string;
 }
 
 export function DateTimePicker({
@@ -29,6 +32,8 @@ export function DateTimePicker({
   label,
   minDate,
   onchange,
+  setValue,
+  registerField,
 }: DateTimePickerProps) {
   const [selectedDateTime, setSelectedDateTime] = React.useState<DateTime>(
     DateTime.fromJSDate(date)
@@ -56,8 +61,8 @@ export function DateTimePicker({
   };
 
   React.useEffect(() => {
-   onchange ? onchange() : null
-  }, [selectedDateTime]);
+    setValue && registerField && setValue(registerField, date);
+  }, [date, setValue, registerField]);
 
   const footer = (
     <>
@@ -76,7 +81,6 @@ export function DateTimePicker({
   return (
     <Popover>
       <PopoverTrigger asChild className="z-10">
-        
         <Button
           variant={"outline"}
           className={cn(
@@ -91,7 +95,6 @@ export function DateTimePicker({
             <span>Pick a date</span>
           )}
         </Button>
-        
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">
         <Calendar

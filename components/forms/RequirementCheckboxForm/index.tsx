@@ -1,11 +1,22 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { UseFormRegister, useForm } from 'react-hook-form'
 import { ErrorForm, LabelForm } from '..'
 import CheckboxForm from '../CheckboxForm'
 
 type Props = {
   label: string
-  register: ReturnType<typeof useForm>['register']
+  register: UseFormRegister<{
+    countries: any[];
+    other: boolean;
+    find_partners: boolean;
+    find_suppliers: boolean;
+    find_customers: boolean;
+    seeks_investor: boolean;
+    find_skills: boolean;
+    exchange_share: boolean;
+    trained_for_development: boolean;
+    descriptionRequirement: string;
+}>/* ReturnType<typeof useForm>['register'] */
   errors: { [x: string]: any }
   required?: boolean
 }

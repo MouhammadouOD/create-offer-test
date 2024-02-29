@@ -21,6 +21,8 @@ type UserFormData = {
   job: string
 }
 
+
+
 type AllFormsSignUp =
   | UserFormData
   | StatusFormData
